@@ -3,6 +3,7 @@ import chalk from "chalk";
 import GreetCommand from "./commands/greet";
 import TimeCommand from "./commands/time";
 import RandomNumberCommand from "./commands/randomnum";
+import FileInfoCommand from "./commands/fileinfo";
 
 const program: Command = new Command();
 
@@ -52,6 +53,16 @@ program
     .description("generate a random number between 1 and 100")
     .action(() => {
         randomNumberCommand.execute();
+    });
+
+const fileInfoCommand = new FileInfoCommand();
+
+program
+    .command("fileinfo")
+    .description("display information about a file")
+    .argument("<filename>", "path to the file")
+    .action((filename: string) => {
+        fileInfoCommand.execute(filename);
     });
 
 program.parse(process.argv);
