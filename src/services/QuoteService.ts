@@ -6,15 +6,13 @@ interface Quote {
 }
 
 class QuoteService {
-    private baseUrl: string = "https://api.quotable.io";
+    private baseUrl: string = "https://dummyjson.com/quotes/random";
 
     async getRandomQuote(): Promise<Quote> {
-        const response: AxiosResponse = await axios.get(
-            `${this.baseUrl}/random`
-        );
+        const response: AxiosResponse = await axios.get(this.baseUrl);
 
         return {
-            content: response.data.content,
+            content: response.data.quote,
             author: response.data.author,
         };
     }

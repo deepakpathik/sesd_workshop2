@@ -7,6 +7,7 @@ import FileInfoCommand from "./commands/fileinfo";
 import WordCountCommand from "./commands/wordcount";
 import GithubCommand from "./commands/github";
 import WeatherCommand from "./commands/weather";
+import QuoteCommand from "./commands/quote";
 
 const program: Command = new Command();
 
@@ -96,6 +97,15 @@ program
     .argument("<city>", "city name")
     .action(async (city: string) => {
         await weatherCommand.execute(city);
+    });
+
+const quoteCommand = new QuoteCommand();
+
+program
+    .command("quote")
+    .description("display a random inspirational quote")
+    .action(async () => {
+        await quoteCommand.execute();
     });
 
 program.parse(process.argv);
