@@ -5,7 +5,9 @@ class GreetCommand {
     execute(name: string): void {
         if (!Validator.isNotEmpty(name, "name")) return;
 
-        console.log(chalk.cyan(`Hello ${name}, welcome to DevTool CLI`));
+        console.log();
+        console.log(chalk.cyan.bold(`  👋 Hello ${name}, welcome to DevTool CLI`));
+        console.log();
     }
 }
 

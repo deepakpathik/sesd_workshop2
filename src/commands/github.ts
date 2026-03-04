@@ -15,13 +15,16 @@ class GithubCommand {
         try {
             const user = await this.githubService.getUser(username);
 
-            console.log(chalk.blue.bold("\nGitHub Profile"));
-            console.log(chalk.white(`  Username: ${user.login}`));
-            console.log(chalk.white(`  Public Repos: ${user.public_repos}`));
-            console.log(chalk.white(`  Followers: ${user.followers}`));
-            console.log(chalk.white(`  Profile URL: ${chalk.underline(user.html_url)}`));
+            console.log();
+            console.log(chalk.blue.bold("  🐙 GitHub Profile"));
+            console.log(chalk.dim("  ─────────────────────────────"));
+            console.log(chalk.white(`  Username     ${chalk.green(user.login)}`));
+            console.log(chalk.white(`  Repos        ${chalk.green(String(user.public_repos))}`));
+            console.log(chalk.white(`  Followers    ${chalk.green(String(user.followers))}`));
+            console.log(chalk.white(`  Profile      ${chalk.cyan.underline(user.html_url)}`));
+            console.log();
         } catch {
-            console.log(chalk.red(`Could not find GitHub user: ${username}`));
+            console.log(chalk.red(`\n  ✗ Could not find GitHub user: ${username}\n`));
         }
     }
 }

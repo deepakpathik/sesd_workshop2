@@ -12,10 +12,14 @@ class QuoteCommand {
         try {
             const quote = await this.quoteService.getRandomQuote();
 
-            console.log(chalk.italic.cyan(`\n"${quote.content}"`));
-            console.log(chalk.dim(`  — ${quote.author}\n`));
+            console.log();
+            console.log(chalk.yellow.bold("  💬 Quote of the Moment"));
+            console.log(chalk.dim("  ─────────────────────────────"));
+            console.log(chalk.italic.cyan(`  "${quote.content}"`));
+            console.log(chalk.dim(`  — ${quote.author}`));
+            console.log();
         } catch {
-            console.log(chalk.red("Could not fetch a quote at this time."));
+            console.log(chalk.red("\n  ✗ Could not fetch a quote at this time.\n"));
         }
     }
 }

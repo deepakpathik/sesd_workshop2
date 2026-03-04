@@ -15,13 +15,16 @@ class WeatherCommand {
         try {
             const data = await this.weatherService.getWeather(city);
 
-            console.log(chalk.blue.bold(`\nWeather in ${data.city}`));
-            console.log(chalk.white(`  Temperature: ${data.temperature}°C`));
-            console.log(chalk.white(`  Humidity: ${data.humidity}%`));
-            console.log(chalk.white(`  Condition: ${data.description}`));
-            console.log(chalk.white(`  Wind Speed: ${data.windspeed} km/h`));
+            console.log();
+            console.log(chalk.blue.bold(`  🌤  Weather in ${data.city}`));
+            console.log(chalk.dim("  ─────────────────────────────"));
+            console.log(chalk.white(`  Temp       ${chalk.green(data.temperature + "°C")}`));
+            console.log(chalk.white(`  Humidity   ${chalk.green(data.humidity + "%")}`));
+            console.log(chalk.white(`  Condition  ${chalk.green(data.description)}`));
+            console.log(chalk.white(`  Wind       ${chalk.green(data.windspeed + " km/h")}`));
+            console.log();
         } catch {
-            console.log(chalk.red(`Could not fetch weather for: ${city}`));
+            console.log(chalk.red(`\n  ✗ Could not fetch weather for: ${city}\n`));
         }
     }
 }

@@ -12,10 +12,14 @@ class JokeCommand {
         try {
             const joke = await this.jokeService.getRandomJoke();
 
-            console.log(chalk.yellow(`\n${joke.setup}`));
-            console.log(chalk.green.bold(`${joke.punchline}\n`));
+            console.log();
+            console.log(chalk.yellow.bold("  😂 Random Joke"));
+            console.log(chalk.dim("  ─────────────────────────────"));
+            console.log(chalk.white(`  ${joke.setup}`));
+            console.log(chalk.green.bold(`  ${joke.punchline}`));
+            console.log();
         } catch {
-            console.log(chalk.red("Could not fetch a joke at this time."));
+            console.log(chalk.red("\n  ✗ Could not fetch a joke at this time.\n"));
         }
     }
 }

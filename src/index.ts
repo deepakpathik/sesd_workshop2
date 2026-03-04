@@ -12,21 +12,42 @@ import JokeCommand from "./commands/joke";
 
 const program: Command = new Command();
 
+const greetCommand = new GreetCommand();
+const timeCommand = new TimeCommand();
+const randomNumberCommand = new RandomNumberCommand();
+const fileInfoCommand = new FileInfoCommand();
+const wordCountCommand = new WordCountCommand();
+const githubCommand = new GithubCommand();
+const weatherCommand = new WeatherCommand();
+const quoteCommand = new QuoteCommand();
+const jokeCommand = new JokeCommand();
+
 program
     .name("devtool")
-    .version("1.0.0", "-v, --version", "display the current version")
-    .description("A developer productivity CLI tool for managing projects")
-    .helpOption("-h, --help", "display available commands and options")
+    .version("1.0.0", "-v, --version", "output the current version")
+    .description(
+        chalk.cyan.bold("DevTool CLI") +
+        chalk.dim(" — a developer productivity toolkit\n\n") +
+        chalk.white("  Available command categories:\n") +
+        chalk.yellow("    General    ") + chalk.dim("greet, time, randomnum, info\n") +
+        chalk.yellow("    Files      ") + chalk.dim("fileinfo, wordcount\n") +
+        chalk.yellow("    API        ") + chalk.dim("github, weather, quote, joke")
+    )
+    .helpOption("-h, --help", "show all available commands and options")
     .action(() => {
-        console.log(chalk.green.bold("DevTool CLI initialized"));
-        console.log(chalk.dim("Run devtool --help to see available commands"));
+        console.log();
+        console.log(chalk.cyan.bold("  ⚡ DevTool CLI v1.0.0"));
+        console.log(chalk.dim("  ─────────────────────────────"));
+        console.log(chalk.green("  Ready to boost your productivity!"));
+        console.log();
+        console.log(chalk.white("  Run ") + chalk.yellow("devtool --help") + chalk.white(" to see all commands."));
+        console.log(chalk.white("  Run ") + chalk.yellow("devtool <command> --help") + chalk.white(" for command details."));
+        console.log();
     });
-
-const greetCommand = new GreetCommand();
 
 program
     .command("greet")
-    .description("greet a user by name")
+    .description("greet a user with a personalized welcome message")
     .argument("<name>", "name of the person to greet")
     .action((name: string) => {
         greetCommand.execute(name);
@@ -34,24 +55,23 @@ program
 
 program
     .command("info")
-    .description("display system and project information")
+    .description("show Node.js version, platform, and architecture")
     .action(() => {
-        console.log(chalk.yellow.bold("Project Info"));
-        console.log(chalk.white(`  Node.js: ${process.version}`));
-        console.log(chalk.white(`  Platform: ${process.platform}`));
-        console.log(chalk.white(`  Architecture: ${process.arch}`));
+        console.log();
+        console.log(chalk.yellow.bold("  📋 System Info"));
+        console.log(chalk.dim("  ─────────────────────────────"));
+        console.log(chalk.white(`  Node.js      ${chalk.green(process.version)}`));
+        console.log(chalk.white(`  Platform     ${chalk.green(process.platform)}`));
+        console.log(chalk.white(`  Architecture ${chalk.green(process.arch)}`));
+        console.log();
     });
-
-const timeCommand = new TimeCommand();
 
 program
     .command("time")
-    .description("display the current system time")
+    .description("display the current system date and time")
     .action(() => {
         timeCommand.execute();
     });
-
-const randomNumberCommand = new RandomNumberCommand();
 
 program
     .command("randomnum")
@@ -60,60 +80,48 @@ program
         randomNumberCommand.execute();
     });
 
-const fileInfoCommand = new FileInfoCommand();
-
 program
     .command("fileinfo")
-    .description("display information about a file")
-    .argument("<filename>", "path to the file")
+    .description("show file size, last modified time, and extension")
+    .argument("<filename>", "path to the target file")
     .action((filename: string) => {
         fileInfoCommand.execute(filename);
     });
 
-const wordCountCommand = new WordCountCommand();
-
 program
     .command("wordcount")
-    .description("count the number of words in a file")
-    .argument("<filename>", "path to the file")
+    .description("count total words in a text file")
+    .argument("<filename>", "path to the target file")
     .action((filename: string) => {
         wordCountCommand.execute(filename);
     });
 
-const githubCommand = new GithubCommand();
-
 program
     .command("github")
-    .description("fetch a GitHub user profile")
-    .argument("<username>", "GitHub username")
+    .description("fetch a GitHub user profile with repo and follower stats")
+    .argument("<username>", "GitHub username to look up")
     .action(async (username: string) => {
         await githubCommand.execute(username);
     });
 
-const weatherCommand = new WeatherCommand();
-
 program
     .command("weather")
-    .description("fetch current weather for a city")
-    .argument("<city>", "city name")
+    .description("get current temperature, humidity, and conditions for a city")
+    .argument("<city>", "city name to check weather for")
     .action(async (city: string) => {
         await weatherCommand.execute(city);
     });
 
-const quoteCommand = new QuoteCommand();
-
 program
     .command("quote")
-    .description("display a random inspirational quote")
+    .description("display a random inspirational quote with its author")
     .action(async () => {
         await quoteCommand.execute();
     });
 
-const jokeCommand = new JokeCommand();
-
 program
     .command("joke")
-    .description("display a random joke")
+    .description("tell a random joke with setup and punchline")
     .action(async () => {
         await jokeCommand.execute();
     });
