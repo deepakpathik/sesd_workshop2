@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import chalk from "chalk";
+import GreetCommand from "./commands/greet";
 
 const program: Command = new Command();
 
@@ -13,12 +14,14 @@ program
         console.log(chalk.dim("Run devtool --help to see available commands"));
     });
 
+const greetCommand = new GreetCommand();
+
 program
     .command("greet")
-    .description("display a greeting message")
-    .argument("[name]", "your name", "Developer")
+    .description("greet a user by name")
+    .argument("<name>", "name of the person to greet")
     .action((name: string) => {
-        console.log(chalk.cyan(`Hello, ${name}! Welcome to DevTool.`));
+        greetCommand.execute(name);
     });
 
 program
