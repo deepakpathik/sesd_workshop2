@@ -8,6 +8,7 @@ import WordCountCommand from "./commands/wordcount";
 import GithubCommand from "./commands/github";
 import WeatherCommand from "./commands/weather";
 import QuoteCommand from "./commands/quote";
+import JokeCommand from "./commands/joke";
 
 const program: Command = new Command();
 
@@ -106,6 +107,15 @@ program
     .description("display a random inspirational quote")
     .action(async () => {
         await quoteCommand.execute();
+    });
+
+const jokeCommand = new JokeCommand();
+
+program
+    .command("joke")
+    .description("display a random joke")
+    .action(async () => {
+        await jokeCommand.execute();
     });
 
 program.parse(process.argv);
