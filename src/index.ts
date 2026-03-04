@@ -2,6 +2,7 @@ import { Command } from "commander";
 import chalk from "chalk";
 import GreetCommand from "./commands/greet";
 import TimeCommand from "./commands/time";
+import RandomNumberCommand from "./commands/randomnum";
 
 const program: Command = new Command();
 
@@ -42,6 +43,15 @@ program
     .description("display the current system time")
     .action(() => {
         timeCommand.execute();
+    });
+
+const randomNumberCommand = new RandomNumberCommand();
+
+program
+    .command("randomnum")
+    .description("generate a random number between 1 and 100")
+    .action(() => {
+        randomNumberCommand.execute();
     });
 
 program.parse(process.argv);
