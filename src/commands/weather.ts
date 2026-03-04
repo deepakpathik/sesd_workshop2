@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import Validator from "../utils/validator";
 import WeatherService from "../services/WeatherService";
 
 class WeatherCommand {
@@ -9,6 +10,8 @@ class WeatherCommand {
     }
 
     async execute(city: string): Promise<void> {
+        if (!Validator.hasMinLength(city, 2, "city")) return;
+
         try {
             const data = await this.weatherService.getWeather(city);
 

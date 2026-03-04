@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import Validator from "../utils/validator";
 import GithubService from "../services/GithubService";
 
 class GithubCommand {
@@ -9,6 +10,8 @@ class GithubCommand {
     }
 
     async execute(username: string): Promise<void> {
+        if (!Validator.isAlphanumeric(username, "username")) return;
+
         try {
             const user = await this.githubService.getUser(username);
 

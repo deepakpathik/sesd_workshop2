@@ -1,8 +1,11 @@
 import fs from "fs";
 import chalk from "chalk";
+import Validator from "../utils/validator";
 
 class WordCountCommand {
     execute(filename: string): void {
+        if (!Validator.isValidFilePath(filename, "filename")) return;
+
         if (!fs.existsSync(filename)) {
             console.log(chalk.red(`File not found: ${filename}`));
             return;
