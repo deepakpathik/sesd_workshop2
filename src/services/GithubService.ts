@@ -6,6 +6,7 @@ interface GithubUser {
     public_repos: number;
     followers: number;
     bio: string;
+    html_url: string;
 }
 
 class GithubService {

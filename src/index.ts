@@ -5,6 +5,7 @@ import TimeCommand from "./commands/time";
 import RandomNumberCommand from "./commands/randomnum";
 import FileInfoCommand from "./commands/fileinfo";
 import WordCountCommand from "./commands/wordcount";
+import GithubCommand from "./commands/github";
 
 const program: Command = new Command();
 
@@ -74,6 +75,16 @@ program
     .argument("<filename>", "path to the file")
     .action((filename: string) => {
         wordCountCommand.execute(filename);
+    });
+
+const githubCommand = new GithubCommand();
+
+program
+    .command("github")
+    .description("fetch a GitHub user profile")
+    .argument("<username>", "GitHub username")
+    .action(async (username: string) => {
+        await githubCommand.execute(username);
     });
 
 program.parse(process.argv);
