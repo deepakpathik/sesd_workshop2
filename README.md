@@ -86,6 +86,19 @@ devtool joke
 | DummyJSON | `https://dummyjson.com/quotes/random` | Random quotes |
 | Official Joke API | `https://official-joke-api.appspot.com/random_joke` | Random jokes |
 
+## Diagrams
+
+All system design diagrams are in the [`diagrams/`](diagrams/) folder and render natively on GitHub.
+
+| Diagram | File | Description |
+|---------|------|-------------|
+| 👤 Use Case | [use-case.md](diagrams/use-case.md) | Actor and use case relationships |
+| 🏗️ Class Diagram | [class-diagram.md](diagrams/class-diagram.md) | OOP structure with classes, interfaces, and dependencies |
+| 🗃️ ER Diagram | [er-diagram.md](diagrams/er-diagram.md) | Data entities and their relationships |
+| 🔄 Sequence | [sequence-diagram.md](diagrams/sequence-diagram.md) | GitHub, Weather, FileInfo, and Validation flows |
+| 📐 Architecture | [architecture.md](diagrams/architecture.md) | Layered system architecture and dependency graph |
+| 📊 Flowcharts | [flowchart.md](diagrams/flowchart.md) | Command execution and CLI startup flows |
+
 ## Project Structure
 
 ```
@@ -110,6 +123,13 @@ sesd_workshop2/
 │   │   ├── fileUtils.ts
 │   │   └── validator.ts
 │   └── index.ts
+├── diagrams/
+│   ├── use-case.md
+│   ├── class-diagram.md
+│   ├── er-diagram.md
+│   ├── sequence-diagram.md
+│   ├── architecture.md
+│   └── flowchart.md
 ├── package.json
 ├── tsconfig.json
 └── .gitignore
