@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import GreetCommand from "./commands/greet";
+import TimeCommand from "./commands/time";
 
 const program: Command = new Command();
 
@@ -32,6 +33,15 @@ program
         console.log(chalk.white(`  Node.js: ${process.version}`));
         console.log(chalk.white(`  Platform: ${process.platform}`));
         console.log(chalk.white(`  Architecture: ${process.arch}`));
+    });
+
+const timeCommand = new TimeCommand();
+
+program
+    .command("time")
+    .description("display the current system time")
+    .action(() => {
+        timeCommand.execute();
     });
 
 program.parse(process.argv);
