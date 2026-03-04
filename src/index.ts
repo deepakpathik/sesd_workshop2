@@ -6,6 +6,7 @@ import RandomNumberCommand from "./commands/randomnum";
 import FileInfoCommand from "./commands/fileinfo";
 import WordCountCommand from "./commands/wordcount";
 import GithubCommand from "./commands/github";
+import WeatherCommand from "./commands/weather";
 
 const program: Command = new Command();
 
@@ -85,6 +86,16 @@ program
     .argument("<username>", "GitHub username")
     .action(async (username: string) => {
         await githubCommand.execute(username);
+    });
+
+const weatherCommand = new WeatherCommand();
+
+program
+    .command("weather")
+    .description("fetch current weather for a city")
+    .argument("<city>", "city name")
+    .action(async (city: string) => {
+        await weatherCommand.execute(city);
     });
 
 program.parse(process.argv);

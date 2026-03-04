@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 interface WeatherData {
     temperature: number;
+    humidity: number;
     description: string;
     windspeed: number;
 }
@@ -28,14 +29,17 @@ class WeatherService {
                 latitude: location.latitude,
                 longitude: location.longitude,
                 current_weather: true,
+                hourly: "relative_humidity_2m",
             },
         });
 
         const current = weatherResponse.data.current_weather;
+        const humidity = weatherResponse.data.hourly.relative_humidity_2m[0];
 
         return {
             city: location.name,
             temperature: current.temperature,
+            humidity,
             description: this.getWeatherDescription(current.weathercode),
             windspeed: current.windspeed,
         };
