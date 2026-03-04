@@ -4,6 +4,7 @@ import GreetCommand from "./commands/greet";
 import TimeCommand from "./commands/time";
 import RandomNumberCommand from "./commands/randomnum";
 import FileInfoCommand from "./commands/fileinfo";
+import WordCountCommand from "./commands/wordcount";
 
 const program: Command = new Command();
 
@@ -63,6 +64,16 @@ program
     .argument("<filename>", "path to the file")
     .action((filename: string) => {
         fileInfoCommand.execute(filename);
+    });
+
+const wordCountCommand = new WordCountCommand();
+
+program
+    .command("wordcount")
+    .description("count the number of words in a file")
+    .argument("<filename>", "path to the file")
+    .action((filename: string) => {
+        wordCountCommand.execute(filename);
     });
 
 program.parse(process.argv);
